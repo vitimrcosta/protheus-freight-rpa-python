@@ -49,7 +49,9 @@ logs/
 output/
 *.xlsx
 *.pdf
-*.csv
+# Ignorar CSVs gerados, mas não o arquivo de exemplo
+!data/exemplo_pedidos.csv
+output/*.csv
 
 # Sistema operacional
 Thumbs.db
