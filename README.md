@@ -62,6 +62,8 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+**Nota sobre dependências:** A versão do `pandas` não está fixada no `requirements.txt` para garantir compatibilidade. Se você encontrar erros de compilação relacionados ao `pandas` durante a instalação, esta abordagem permite que o `pip` escolha uma versão pré-compilada compatível com seu sistema.
+
 **Dependências principais:**
 - `pandas` - Processamento de dados
 - `openpyxl` - Geração de arquivos Excel
@@ -100,14 +102,12 @@ rpa-processamento-pedidos/
 ├── logs/                         # Arquivos de log
 │   └── aplicacao.log             # Log de execução
 │
-├── docs/                         # Documentação
-│   └── requirements.txt          # Dependências Python
-│
 ├── main.py                       # Ponto de entrada
 ├── run_tests.py                  # Executor de testes
 ├── run_examples.py               # Executor de exemplos
 ├── setup.py                      # Configuração de pacote
 ├── .gitignore                    # Arquivos ignorados pelo Git
+├── requirements.txt              # Depedencias do pyhton
 └── README.md                     # Este arquivo
 ```
 
@@ -296,6 +296,12 @@ Inclui:
 - Exemplo de extensão
 
 ## 🐛 Troubleshooting
+
+### Erro de Compilação do `pandas` no Windows
+
+Se você receber um erro como `Microsoft Visual C++ 14.0 or greater is required`, significa que o `pip` não encontrou uma versão pré-compilada (wheel) do `pandas` compatível com seu sistema e tentou compilá-la a partir do código-fonte, mas o compilador C++ não está instalado.
+
+**Solução:** O `requirements.txt` já está configurado para permitir que o `pip` escolha a versão mais recente do `pandas`, o que geralmente resolve o problema. Se o erro persistir, certifique-se de que seu `pip` está atualizado (`pip install --upgrade pip`) antes de tentar instalar as dependências novamente.
 
 ### Erro de Encoding no Windows
 

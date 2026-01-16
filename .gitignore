@@ -48,6 +48,9 @@ logs/
 # Output
 output/
 *.xlsx
+
+# Documentation
+docs/TECHNICAL.md
 *.pdf
 # Ignorar CSVs gerados, mas não o arquivo de exemplo
 !data/exemplo_pedidos.csv
@@ -66,3 +69,4 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
