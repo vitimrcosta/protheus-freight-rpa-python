@@ -343,6 +343,7 @@ Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICEN
 
 ## 👨‍💻 Autor
 
-Desenvolvido como sistema de automação de pedidos.
+**Vitimrcosta**
+- GitHub: [@vitimrcosta](https://github.com/vitimrcosta)
 
 ---
