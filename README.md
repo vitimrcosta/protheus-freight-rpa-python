@@ -352,7 +352,6 @@ Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICEN
 
 ## 👨‍💻 Autor
 
-Victor Rocha Costa
 Desenvolvido como sistema de automação de pedidos.
 
 ---
