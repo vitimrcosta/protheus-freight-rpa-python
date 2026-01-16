@@ -50,6 +50,10 @@ cd protheus-freight-rpa-python
 python -m venv venv
 venv\Scripts\activate
 
+# Gitbash
+python -m venv venv
+source venv/Scripts/activate
+
 # macOS/Linux
 python3 -m venv venv
 source venv/bin/activate
@@ -58,8 +62,8 @@ source venv/bin/activate
 #### 3. Instalar Dependências
 
 ```bash
-pip install --upgrade pip
 pip install -r requirements.txt
+pip install --upgrade pip
 ```
 
 **Nota sobre dependências:** A versão do `pandas` não está fixada no `requirements.txt` para garantir compatibilidade. Se você encontrar erros de compilação relacionados ao `pandas` durante a instalação, esta abordagem permite que o `pip` escolha uma versão pré-compilada compatível com seu sistema.
@@ -284,17 +288,6 @@ A suite `teste_sistema.py` valida:
 - ✅ Automação e scheduling
 - ✅ Integração de email
 
-## 📚 Documentação Técnica
-
-Para documentação técnica detalhada, veja [TECHNICAL.md](TECHNICAL.md)
-
-Inclui:
-- Arquitetura e design
-- Explicação de cada módulo
-- Fluxo de dados
-- Tratamento de erros
-- Exemplo de extensão
-
 ## 🐛 Troubleshooting
 
 ### Erro de Compilação do `pandas` no Windows
@@ -343,14 +336,6 @@ Todos os eventos são registrados em `logs/aplicacao.log`:
 - [Pandas Documentação](https://pandas.pydata.org)
 - [OpenPyXL Documentação](https://openpyxl.readthedocs.io)
 - [Schedule Library](https://schedule.readthedocs.io)
-
-## 🤝 Contribuindo
-
-1. Faça um Fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
-3. Commit suas mudanças (`git commit -am 'Adiciona MinhaFeature'`)
-4. Push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
 
 ## 📄 Licença
 
