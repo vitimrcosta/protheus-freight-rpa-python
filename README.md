@@ -1,51 +1,35 @@
 # Sistema RPA de Processamento de Pedidos
 
-Sistema automatizado de processamento de pedidos com geração de relatórios em Excel, criação de fila de fretes e integração de email via RPA (Robotic Process Automation).
+Este projeto automatiza o processamento de pedidos a partir de um arquivo CSV, gera um relatório detalhado em Excel e simula o envio de notificações por e-mail.
 
-## 📋 Descrição
+## ✨ Funcionalidades
 
-Este projeto automatiza o fluxo completo de processamento de pedidos:
-- 📥 **Leitura de CSV**: Importa dados de pedidos de arquivo CSV
-- 🔄 **Processamento**: Valida, transforma e agrega dados
-- 📊 **Relatórios**: Gera relatórios em Excel com múltiplas abas
-- 📅 **Fila de Fretes**: Cria agendamento automático de fretes
-- 🤖 **Automação**: Executa tarefas em horários pré-definidos
-- 📧 **Email**: Integração com sistemas de email para notificações
+- **Leitura de Dados**: Importa pedidos de um arquivo `.csv`.
+- **Análise e Processamento**: Calcula totais por cliente, cria uma fila de fretes com status de urgência e gera um resumo executivo.
+- **Geração de Relatório**: Cria um arquivo Excel (`.xlsx`) com três abas:
+  1.  `Resumo_Executivo`: Visão geral dos totais.
+  2.  `Totais_Cliente`: Detalhes de valor e quantidade por cliente.
+  3.  `Fila_Fretes`: Lista de fretes a serem despachados.
+- **Automação (RPA)**: Pode ser configurado para rodar o processo automaticamente em intervalos de tempo definidos.
+- **Notificações**: Simula o envio de e-mails de alerta para fretes urgentes e o relatório final para a gestão.
 
-## ✨ Características Principais
+## 🚀 Como Usar
 
-- **Modular e Escalável**: Arquitetura baseada em pacotes Python profissional
-- **Tratamento de Erros**: Sistema robusto de logging e tratamento de exceções
-- **Testes Automatizados**: 7 testes cobrindo todas as funcionalidades (100% sucesso)
-- **Documentação Completa**: Código bem comentado e documentação técnica
-- **Agendamento**: Suporte a execução automática via scheduling
-- **Cross-Platform**: Funciona em Windows, macOS e Linux
+### 1. Pré-requisitos
 
-## 🚀 Início Rápido
+- Python 3.9+
+- Git
 
-### Pré-requisitos
+### 2. Instalação
 
-- Python 3.13 ou superior
-- pip (gerenciador de pacotes Python)
-- Git (para clonar o repositório)
-
-### Instalação
-
-#### 1. Clonar o Repositório
+Clone o repositório, crie um ambiente virtual e instale as dependências.
 
 ```bash
-# HTTPS
+# 1. Clone o repositório
 git clone https://github.com/vitimrcosta/protheus-freight-rpa-python.git
 cd protheus-freight-rpa-python
 
-# ou SSH (se configurado)
-git clone git@github.com:vitimrcosta/protheus-freight-rpa-python.git
-cd protheus-freight-rpa-python
-```
-
-#### 2. Criar Ambiente Virtual
-
-```bash
+# 2. Crie e ative o ambiente virtual
 # Windows
 python -m venv venv
 venv\Scripts\activate
@@ -57,293 +41,53 @@ source venv/Scripts/activate
 # macOS/Linux
 python3 -m venv venv
 source venv/bin/activate
-```
 
-#### 3. Instalar Dependências
-
-```bash
+# 3. Instale as dependências
 pip install -r requirements.txt
-pip install --upgrade pip
 ```
 
-**Nota sobre dependências:** A versão do `pandas` não está fixada no `requirements.txt` para garantir compatibilidade. Se você encontrar erros de compilação relacionados ao `pandas` durante a instalação, esta abordagem permite que o `pip` escolha uma versão pré-compilada compatível com seu sistema.
+### 3. Execução
 
-**Dependências principais:**
-- `pandas` - Processamento de dados
-- `openpyxl` - Geração de arquivos Excel
-- `schedule` - Agendamento de tarefas
-
-## 📦 Estrutura do Projeto
-
-```
-rpa-processamento-pedidos/
-│
-├── src/                          # Código-fonte principal
-│   ├── main.py                   # Orquestrador principal
-│   ├── config.py                 # Configurações centralizadas
-│   ├── logger_config.py          # Sistema de logging
-│   │
-│   ├── core/                     # Módulos de processamento
-│   │   ├── leitor_csv.py         # Leitura e validação de CSV
-│   │   ├── processador_pedidos.py # Transformação de dados
-│   │   └── gerador_relatorio.py  # Geração de relatórios
-│   │
-│   └── automacao/                # Módulos de automação
-│       ├── rpa_automacao.py      # Agendamento de tarefas
-│       └── integracao_email_real.py # Integração de email
-│
-├── tests/                        # Testes e exemplos
-│   ├── teste_sistema.py          # Suite de 7 testes
-│   └── exemplo_uso_avancado.py   # 5 exemplos de uso
-│
-├── data/                         # Dados de entrada
-│   └── exemplo_pedidos.csv       # Arquivo de exemplo
-│
-├── output/                       # Arquivos gerados
-│   ├── relatorio_pedidos.xlsx    # Relatório em Excel
-│   └── pedidos_customizado.csv   # Exportações customizadas
-│
-├── logs/                         # Arquivos de log
-│   └── aplicacao.log             # Log de execução
-│
-├── main.py                       # Ponto de entrada
-├── run_tests.py                  # Executor de testes
-├── run_examples.py               # Executor de exemplos
-├── setup.py                      # Configuração de pacote
-├── .gitignore                    # Arquivos ignorados pelo Git
-├── requirements.txt              # Depedencias do pyhton
-└── README.md                     # Este arquivo
-```
-
-## 🏃 Como Executar
-
-### Execução Simples
-
-Processa um arquivo CSV e gera relatório:
+Para executar o processo uma vez:
 
 ```bash
 python main.py
 ```
 
-**O que acontece:**
-1. Lê `data/exemplo_pedidos.csv`
-2. Valida e transforma os dados
-3. Gera `output/relatorio_pedidos.xlsx`
-4. Exibe relatório no console
-5. Registra tudo em `logs/aplicacao.log`
+- O script lerá o arquivo `data/exemplo_pedidos.csv`.
+- O relatório será salvo em `output/relatorio_pedidos.xlsx`.
+- Um log de execução será gravado em `logs/aplicacao.log`.
 
-### Executar Testes
+### 4. Executar Testes
 
-Valida todas as funcionalidades:
+Para verificar a integridade do sistema, rode os testes:
 
 ```bash
 python run_tests.py
 ```
 
-**Saída esperada:**
-```
-✓ Teste 1: Verificar imports
-✓ Teste 2: Verificar arquivos
-✓ Teste 3: Leitura de CSV
-✓ Teste 4: Processamento
-✓ Teste 5: Geração de Relatório
-✓ Teste 6: Automação
-✓ Teste 7: Integração de Email
-
-7/7 APROVADOS (100% SUCESSO)
-```
-
-### Executar Exemplos
-
-Demonstra usos avançados do sistema:
-
-```bash
-python run_examples.py
-```
-
-**Exemplos incluídos:**
-1. Processamento básico
-2. Filtragem de fretes urgentes
-3. Alertas customizados
-4. Agendamento de tarefas
-5. Exportação de dados
-
-## 💻 Uso em Código
-
-### Uso Básico
-
-```python
-from src.core import LeitorCSV, ProcessadorPedidos, GeradorRelatorio
-
-# Ler dados
-leitor = LeitorCSV()
-dados = leitor.ler_dados()
-
-# Processar
-processador = ProcessadorPedidos()
-totais_cliente = processador.calcular_total_por_cliente(dados)
-fila_fretes = processador.criar_fila_fretes(dados)
-
-# Gerar relatório
-gerador = GeradorRelatorio()
-gerador.gerar_excel(dados, totais_cliente, fila_fretes)
-```
-
-### Uso Avançado com Automação
-
-```python
-from src.automacao import AutomacaoRPA
-from datetime import time
-
-# Configurar automação
-automacao = AutomacaoRPA()
-automacao.agendar_tarefa(
-    funcao=processar_pedidos,
-    intervalo_minutos=30,
-    horario_maximo=time(18, 0)
-)
-
-# Iniciar agendador
-automacao.iniciar_scheduler()
-```
-
-### Importar Módulos Específicos
-
-```python
-from src.config import CSV_INPUT, DIAS_ANTECEDENCIA_FRETE
-from src.logger_config import setup_logger
-
-logger = setup_logger(__name__)
-logger.info(f"Processando: {CSV_INPUT}")
-```
-
 ## 🔧 Configuração
 
-Edite `src/config.py` para customizar:
+As principais configurações podem ser ajustadas no arquivo `src/config.py`:
 
-```python
-# Caminhos
-DATA_DIR = "data"
-OUTPUT_DIR = "output"
-LOGS_DIR = "logs"
-CSV_INPUT = DATA_DIR / "exemplo_pedidos.csv"
+- `CSV_INPUT`: Caminho para o arquivo de dados de entrada.
+- `EXECUTAR_AGENDADO`: Mude para `True` para ativar a automação contínua.
+- `INTERVALO_MINUTOS`: Intervalo em minutos entre as execuções agendadas.
 
-# Frete
-DIAS_ANTECEDENCIA_FRETE = 3  # Antecedência mínima
-
-# Agendamento
-EXECUTAR_AGENDADO = False  # True para modo scheduler
-INTERVALO_MINUTOS = 30     # Intervalo entre execuções
-
-# Email (se usar integracao_email_real.py)
-EMAIL_REMETENTE = "seu-email@gmail.com"
-EMAIL_DESTINATARIOS = ["destino@example.com"]
-```
-
-## 📊 Entrada e Saída
-
-### Entrada (CSV)
-
-Arquivo `data/exemplo_pedidos.csv` com colunas:
-- `cliente` - Nome do cliente
-- `produto` - Descrição do produto
-- `quantidade` - Quantidade pedida
-- `valor_unitario` - Valor por unidade
-- `data_pedido` - Data do pedido (YYYY-MM-DD)
-
-### Saída (Excel)
-
-Arquivo `output/relatorio_pedidos.xlsx` com 3 abas:
-
-1. **Resumo_Executivo**
-   - Total de pedidos
-   - Valor total
-   - Quantidade total
-   - Clientes atendidos
-
-2. **Totais_Cliente**
-   - Resumo por cliente
-   - Quantidade e valor
-
-3. **Fila_Fretes**
-   - Fretes agendados
-   - Datas e clientes
-
-## 🧪 Testes
-
-### Rodar Testes Específicos
-
-```bash
-python -m pytest tests/teste_sistema.py -v
-```
-
-### Cobertura de Testes
-
-A suite `teste_sistema.py` valida:
-- ✅ Importação de módulos
-- ✅ Existência de arquivos
-- ✅ Leitura de CSV
-- ✅ Processamento de dados
-- ✅ Geração de relatórios
-- ✅ Automação e scheduling
-- ✅ Integração de email
-
-## 🐛 Troubleshooting
-
-### Erro de Compilação do `pandas` no Windows
-
-Se você receber um erro como `Microsoft Visual C++ 14.0 or greater is required`, significa que o `pip` não encontrou uma versão pré-compilada (wheel) do `pandas` compatível com seu sistema e tentou compilá-la a partir do código-fonte, mas o compilador C++ não está instalado.
-
-**Solução:** O `requirements.txt` já está configurado para permitir que o `pip` escolha a versão mais recente do `pandas`, o que geralmente resolve o problema. Se o erro persistir, certifique-se de que seu `pip` está atualizado (`pip install --upgrade pip`) antes de tentar instalar as dependências novamente.
-
-### Erro de Encoding no Windows
-
-Se encontrar `UnicodeEncodeError`:
-
-```bash
-# Já configurado no src/main.py, mas se necesário:
-set PYTHONIOENCODING=utf-8
-python main.py
-```
-
-### Módulos não encontrados
-
-Certifique-se de estar no diretório raiz:
-
-```bash
-cd rpa-processamento-pedidos
-python main.py
-```
-
-### Arquivo CSV não encontrado
-
-Verifique que `data/exemplo_pedidos.csv` existe com o formato correto.
-
-## 📝 Log de Execução
-
-Todos os eventos são registrados em `logs/aplicacao.log`:
+## 📦 Estrutura do Projeto
 
 ```
-2026-01-15 14:23:45 - INFO - Iniciando processamento de pedidos...
-2026-01-15 14:23:46 - INFO - Lendo arquivo: data/exemplo_pedidos.csv
-2026-01-15 14:23:47 - INFO - 10 pedidos processados com sucesso
-2026-01-15 14:23:48 - INFO - Relatório gerado: output/relatorio_pedidos.xlsx
+protheus-freight-rpa-python/
+├── src/                # Código-fonte principal
+├── data/               # Dados de entrada (CSV)
+├── output/             # Relatórios gerados (Excel)
+├── logs/               # Logs da aplicação
+├── tests/              # Testes automatizados
+├── main.py             # Ponto de entrada da aplicação
+└── requirements.txt    # Dependências
 ```
-
-## 🔗 Links Úteis
-
-- [Python Oficial](https://www.python.org)
-- [Pandas Documentação](https://pandas.pydata.org)
-- [OpenPyXL Documentação](https://openpyxl.readthedocs.io)
-- [Schedule Library](https://schedule.readthedocs.io)
-
-## 📄 Licença
-
-Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ## 👨‍💻 Autor
 
 **Vitimrcosta**
 - GitHub: [@vitimrcosta](https://github.com/vitimrcosta)
-
----
